@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Landing from "./components/pages/Landing";
 import HomePage from "./components/pages/HomePage";
 import AllTasks from "./components/pages/AllTasks";
-import EditTasks from "./components/pages/EditTasks";
+import EditTask from "./components/pages/EditTask";
 import NotFound from "./components/pages/NotFound";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/all-tasks" component={AllTasks} />
-            <Route exact path="/edit-task" component={EditTasks} />
+            <Route exact path="/edit-task" component={EditTask} />
             <Route component={NotFound} />
          </Switch>
       </Router>
