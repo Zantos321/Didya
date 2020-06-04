@@ -2,7 +2,7 @@ import React from "react";
 import "./style/master.scss"; // applies global scss styles
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Landing from "./components/pages/Landing";
-import HomePage from "./components/pages/Home";
+import HomePage from "./components/pages/HomePage";
 import AllTasks from "./components/pages/AllTasks";
 import EditTasks from "./components/pages/EditTasks";
 import NotFound from "./components/pages/NotFound";
