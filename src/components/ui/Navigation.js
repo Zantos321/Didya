@@ -9,12 +9,12 @@ export default function Navigation() {
       } else return "";
    };
    const tabActiveOnAllTasks = (url) => {
-      if (url.indexOf("all-tasks") > 0 || url.indexOf("edit-task") > 0) {
+      if (url.indexOf("all-tasks") > 0) {
          return "tab-active";
       } else return "";
    };
-   const tabActiveOnLanding = (url) => {
-      if (url.indexOf("/") > 0) {
+   const tabActiveOnAdd = (url) => {
+      if (url.indexOf("add-task") > 0) {
          return "tab-active";
       } else return "";
    };
@@ -40,12 +40,10 @@ export default function Navigation() {
             All Tasks
          </Link>
          <Link
-            to="/"
-            className={`btn btn-secondary tab-separator ${tabActiveOnLanding(
-               url
-            )}`}
+            to="/add-task"
+            className={`btn btn-secondary tab-separator ${tabActiveOnAdd(url)}`}
          >
-            Logout
+            Add Task
          </Link>
       </div>
    );

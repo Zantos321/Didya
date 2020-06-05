@@ -12,35 +12,52 @@ export default function AllTasks() {
          <h1 className="text-center">All Tasks</h1>
          <div className="row col-12 justify-content-center">
             <div className="card border-dark col-9 mb-4">
-               <p className="card-body ">
-                  This is a task that takes no longer than 15 minutes.
-               </p>
+               <div className="card-body">
+                  <p className="card-text ">
+                     This is a task that takes no longer than 15 minutes.
+                  </p>
+               </div>
             </div>
-            <Link to="/edit-task" className="btn btn-primary  float-right mb-4">
+            <Link
+               to="/edit-task"
+               className="btn btn-primary float-right ml-2 mb-4"
+            >
                Edit
             </Link>
-         </div>
-         <div className="row col-12 justify-content-center">
+
             <div className="card border-dark col-9 mb-4">
-               <p className="card-body ">
-                  This is a task that takes no longer than 15 minutes.
-               </p>
+               <div className="card-body">
+                  <p className="card-text ">
+                     This is a task that takes no longer than 15 minutes.
+                  </p>
+               </div>
             </div>
-            <Link to="/edit-task" className="btn btn-primary  float-right mb-4">
+            <Link
+               to="/edit-task"
+               className="btn btn-primary float-right ml-2 mb-4"
+            >
                Edit
             </Link>
-         </div>
-         <div className="row col-12 justify-content-center">
+
             <div className="card border-dark col-9 mb-4">
-               <p className="card-body ">
-                  This is a task that takes no longer than 15 minutes.
-               </p>
+               <div className="card-body">
+                  <p className="card-text ">
+                     This is a task that takes no longer than 15 minutes.
+                  </p>
+               </div>
             </div>
-            <Link to="/edit-task" className="btn btn-primary  float-right mb-4">
+            <Link
+               to="/edit-task"
+               className="btn btn-primary float-right ml-2 mb-4"
+            >
                Edit
             </Link>
          </div>
-         <button className="btn btn-primary float-right">Add Task</button>
+         <div className="row justify-content-center">
+            <Link to="/add-task" className="btn btn-primary ">
+               Add Task
+            </Link>
+         </div>
       </div>
    );
 }

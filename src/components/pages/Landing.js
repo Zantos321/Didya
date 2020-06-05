@@ -1,14 +1,16 @@
 import React from "react";
-import Header from "../ui/Header";
-import Navigation from "../ui/Navigation";
 import { Link } from "react-router-dom";
 
 export default function Landing() {
    return (
       <div className="landing-background">
          <div className="container-fluid">
-            <Header />
-            <Navigation />
+            <div className="row justify-content-center">
+               <h1 className="mt-8 text-white">Welcome to Didya</h1>
+            </div>
+            <div className="row justify-content-center">
+               <h6 className="mt-8 text-white">Sponsered by Geocities</h6>
+            </div>
             <div className="card-deck mt-8">
                <div className="card">
                   <div className="card-body">

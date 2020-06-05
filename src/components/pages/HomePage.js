@@ -10,16 +10,19 @@ export default function HomePage() {
          <Navigation />
 
          <h1 className="text-center">Home Page</h1>
-         <div className="row">
-            <div className="card border-dark col-10 mb-5">
-               <p id="RandomTask" className="card-body">
-                  This is a task that takes no longer than 15 minutes.
-               </p>
+         <div className="row col-12 justify-content-center mb-4">
+            <div className="card col-8 border-dark ">
+               <h5 className="card-header">Didya....</h5>
+               <div className="card-body">
+                  <p className="card-text ">
+                     This is a task that takes no longer than 15 minutes.
+                  </p>
+               </div>
             </div>
-            <div className="btn-group-vertical col-2 d-inline">
-               <button className="btn btn-primary ">Yes</button>
-               <button className="btn btn-danger ">No</button>
-            </div>
+            <button className="btn btn-primary ml-2">Yes</button>
+            <button className="btn btn-danger ml-2">No</button>
+         </div>
+         <div className="row justify-content-center">
             <Link to="/all-tasks" className="btn btn-primary">
                All Tasks
             </Link>

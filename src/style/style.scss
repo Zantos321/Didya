@@ -4,7 +4,7 @@
    background-image: url("../images/buddyChrist.jpg");
    background-size: cover;
    background-repeat: no-repeat;
-   height: 100vh;
+   min-height: 100vh;
 }
 
 .landing-card {
@@ -110,12 +110,8 @@
    background-color: $gray-800;
 }
 
-.card {
-   border: 0;
-}
-
 .card-body {
-   color: $white;
+   color: $black;
    font-family: $font-family-serif;
    font-size: $font-size-base * 1.25;
 }
@@ -131,7 +127,7 @@
 }
 
 .all-card-body-text {
-   color: $white;
+   color: $black;
    font-family: $font-family-serif;
    font-size: $font-size-base;
 }
@@ -148,10 +144,6 @@ textarea {
    -moz-box-shadow: none;
    box-shadow: none;
    resize: none;
-}
-
-.card textarea {
-   color: $white;
 }
 
 .bg-success,
