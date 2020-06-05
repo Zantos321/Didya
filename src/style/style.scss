@@ -1,12 +1,11 @@
 // Landing Page
 
-// .landing-background {
-//    background-image: url("");
-//    height: 100%;
-//    background-size: cover;
-//    background-repeat: no-repeat;
-//    background-position: center;
-// }
+.landing-background {
+   background-image: url("../images/buddyChrist.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   height: 100vh;
+}
 
 .landing-card {
    color: $black;
