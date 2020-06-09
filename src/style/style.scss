@@ -1,12 +1,5 @@
 // Landing Page
 
-.landing-background {
-   background-image: url("../images/buddyChrist.jpg");
-   background-size: cover;
-   background-repeat: no-repeat;
-   min-height: 100vh;
-}
-
 .landing-card {
    color: $black;
    font-family: $font-family-serif;
@@ -58,6 +51,7 @@
 .header h1 {
    margin-left: 5;
 }
+
 @media (max-width: 465px) {
    .header {
       justify-content: center;
