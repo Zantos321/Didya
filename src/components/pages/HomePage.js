@@ -19,7 +19,7 @@ export default function HomePage() {
                   </p>
                </div>
             </div>
-            <button className="btn btn-primary ml-2">Yes</button>
+            <button className="btn btn-success ml-2">Yes</button>
             <button className="btn btn-danger ml-2">No</button>
          </div>
          <div className="row justify-content-center">

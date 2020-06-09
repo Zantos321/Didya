@@ -1,5 +1,11 @@
 // Landing Page
 
+.landing-background {
+   background-color: $My-Color-Theme-1;
+   background-size: cover;
+   min-height: 100vh;
+}
+
 .landing-card {
    color: $black;
    font-family: $font-family-serif;

@@ -22,7 +22,7 @@ export default function AddTask() {
                   </textarea>
                </div>
             </div>
-            <Link to="/all-tasks" className="btn btn-secondary col-4">
+            <Link to="/all-tasks" className="btn btn-warning col-4">
                Cancel
             </Link>
             <div className="col-2"></div>

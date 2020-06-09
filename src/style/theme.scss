@@ -58,8 +58,8 @@ $grays: map-merge(
    $grays
 );
 
-$blue: $blue-600;
-$red: $red-600;
+$blue: $My-Color-Theme-5;
+$red: $red-700;
 $gray: $gray-600;
 
 $colors: ();
@@ -74,12 +74,13 @@ $colors: map-merge(
    $colors
 );
 
-$primary: $gray;
+$primary: $My-Color-Theme-3;
 $secondary: $gray-700;
 $success: $blue;
 $danger: $red;
 $light: $gray-100;
 $dark: $gray-800;
+$warning: $My-Color-Theme-1;
 
 $theme-colors: ();
 $theme-colors: map-merge(
@@ -121,12 +122,15 @@ $paragraph-margin-bottom: 0;
 
 // FONTS
 
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Noto+Sans:wght@400;700&family=Noto+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&family=Yantramanav:wght@400;700&display=swap");
 
-$font-family-sans-serif: "Noto Sans", sans-serif, "Apple Color Emoji",
+// font-family: 'Montserrat', sans-serif;
+// font-family: 'Yantramanav', sans-serif;
+
+$font-family-sans-serif: "Yantramanav", sans-serif, "Apple Color Emoji",
    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$font-family-serif: "Noto Serif", serif;
-$font-family-brand: "Fira Sans";
+$font-family-serif: "Montserrat", serif;
+$font-family-brand: "Yantramanav";
 
 $font-family-base: $font-family-sans-serif;
 

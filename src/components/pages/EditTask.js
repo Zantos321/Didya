@@ -16,11 +16,13 @@ export default function EditTasks() {
                *Make sure your task does not take longer than 15 minutes*{" "}
             </h2>
             <div className="card border-dark col-12 mb-2">
-               <p className="card-body">
-                  This is a task that takes no longer than 15 minutes.
-               </p>
+               <div className="card-body">
+                  <textarea autoFocus={true}>
+                     This is a task that takes no longer than 15 minutes.
+                  </textarea>
+               </div>
             </div>
-            <Link to="/all-tasks" className="btn btn-secondary col-4">
+            <Link to="/all-tasks" className="btn btn-warning col-4">
                Cancel
             </Link>
             <div className="col-2"></div>
