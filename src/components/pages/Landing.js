@@ -52,7 +52,6 @@ export default function Landing() {
                               </div>
                               <Link
                                  to="/home"
-                                 id="loginVerify"
                                  className="btn btn-success btn-lg btn-landing btn-block"
                               >
                                  Log in
@@ -95,7 +94,6 @@ export default function Landing() {
                               </div>
                               <Link
                                  to="/add-task"
-                                 id="signUpVerify"
                                  className="btn btn-success btn-lg btn-landing btn-block"
                               >
                                  Sign Up
