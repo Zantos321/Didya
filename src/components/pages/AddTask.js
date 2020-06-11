@@ -17,9 +17,10 @@ export default function AddTask() {
             </h2>
             <div className="card border-dark col-12 mb-2">
                <div className="card-body">
-                  <textarea autoFocus={true}>
-                     This is a task that takes no longer than 15 minutes.
-                  </textarea>
+                  <textarea
+                     autoFocus={true}
+                     defaultValue="This is a task that takes no longer than 15 minutes."
+                  ></textarea>
                </div>
             </div>
             <Link to="/all-tasks" className="btn btn-warning col-4">

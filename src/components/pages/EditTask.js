@@ -2,6 +2,8 @@ import React from "react";
 import Navigation from "../ui/Navigation";
 import Header from "../ui/Header";
 import { Link } from "react-router-dom";
+import tasks from "../../mock-data/tasks";
+const demoTask = tasks[1];
 
 export default function EditTasks() {
    return (
@@ -17,9 +19,10 @@ export default function EditTasks() {
             </h2>
             <div className="card border-dark col-12 mb-2">
                <div className="card-body">
-                  <textarea autoFocus={true}>
-                     This is a task that takes no longer than 15 minutes.
-                  </textarea>
+                  <textarea
+                     autoFocus={true}
+                     defaultValue={demoTask.userTask}
+                  ></textarea>
                </div>
             </div>
             <Link to="/all-tasks" className="btn btn-warning col-4">
