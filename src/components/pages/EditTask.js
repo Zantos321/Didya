@@ -3,6 +3,7 @@ import Navigation from "../ui/Navigation";
 import Header from "../ui/Header";
 import { Link } from "react-router-dom";
 import tasks from "../../mock-data/tasks";
+import toDisplayDate from "date-fns/format";
 const demoTask = tasks[1];
 
 export default function EditTasks() {
@@ -25,6 +26,12 @@ export default function EditTasks() {
                   ></textarea>
                </div>
             </div>
+         </div>
+         <div className="row">
+            <p className="text-muted">Last Time Completed: </p>
+            <p>{toDisplayDate(demoTask.lastDone, "MMM. d, y")}</p>
+         </div>
+         <div className="row justify-content-center mb-4">
             <Link to="/all-tasks" className="btn btn-warning col-4">
                Cancel
             </Link>

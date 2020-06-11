@@ -4,7 +4,7 @@ const tasks = [
       userTask: "Clean the toilets",
       userId: "52b5c81c-f378-4a90-9614-1702a1b0e205",
       taskCompleted: false,
-      lastDone: 1591745110,
+      lastDone: 1591912509606,
       timesCompleted: 0,
    },
    {
@@ -12,7 +12,7 @@ const tasks = [
       userTask: "Vacuum bedroom",
       userId: "52b5c81c-f378-4a90-9614-1702a1b0e205",
       taskCompleted: false,
-      lastDone: 1591745121,
+      lastDone: 1591912509606,
       timesCompleted: 0,
    },
    {
@@ -20,7 +20,7 @@ const tasks = [
       userTask: "Dust/Clean all the tvs",
       userId: "52b5c81c-f378-4a90-9614-1702a1b0e205",
       taskCompleted: false,
-      lastDone: 1591745127,
+      lastDone: 1591912509606,
       timesCompleted: 0,
    },
    {
@@ -28,7 +28,7 @@ const tasks = [
       userTask: "Start a load of laundry",
       userId: "52b5c81c-f378-4a90-9614-1702a1b0e205",
       taskCompleted: false,
-      lastDone: 1591745133,
+      lastDone: 1591912509606,
       timesCompleted: 0,
    },
    {
@@ -36,7 +36,7 @@ const tasks = [
       userTask: "Clean cat litter boxes",
       userId: "2abdd486-4d8f-482e-b35d-f6eba05f9a7a",
       taskCompleted: false,
-      lastDone: 1591745142,
+      lastDone: 1591912509606,
       timesCompleted: 0,
    },
    {
@@ -44,7 +44,7 @@ const tasks = [
       userTask: "Pick up the living room",
       userId: "2abdd486-4d8f-482e-b35d-f6eba05f9a7a",
       taskCompleted: false,
-      lastDone: 1591745148,
+      lastDone: 1591912509606,
       timesCompleted: 0,
    },
    {
@@ -52,7 +52,7 @@ const tasks = [
       userTask: "Clean the dining room table",
       userId: "2abdd486-4d8f-482e-b35d-f6eba05f9a7a",
       taskCompleted: false,
-      lastDone: 1591745154,
+      lastDone: 1591912509606,
       timesCompleted: 0,
    },
    {
@@ -60,7 +60,7 @@ const tasks = [
       userTask: "Orgainze your backpack",
       userId: "2abdd486-4d8f-482e-b35d-f6eba05f9a7a",
       taskCompleted: false,
-      lastDone: 1591745160,
+      lastDone: 1591912509606,
       timesCompleted: 0,
    },
 ];

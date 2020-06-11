@@ -15,10 +15,7 @@ export default function AllTasks() {
          <Navigation />
          <h1 className="text-center">All Tasks</h1>
          {tasks.map((task) => {
-            return (
-               // prettier-ignore
-               <TaskCard task={task.userTask} key={task.id} />
-            );
+            return <TaskCard task={task.userTask} key={task.id} />;
          })}
          <div className="row justify-content-center">
             <Link to="/add-task" className="btn btn-primary ">
