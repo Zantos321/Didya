@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../ui/Header";
-import Navigation from "../ui/Navigation";
 
 export default function HomePage() {
    return (
       <div className="container">
          <Header />
-         <Navigation />
 
          <h1 className="text-center">Home Page</h1>
          <div className="row col-12 justify-content-center mb-4">

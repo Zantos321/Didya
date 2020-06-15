@@ -1,5 +1,4 @@
 import React from "react";
-import Navigation from "../ui/Navigation";
 import Header from "../ui/Header";
 import { Link } from "react-router-dom";
 import tasks from "../../mock-data/tasks";
@@ -10,7 +9,6 @@ export default function EditTasks() {
    return (
       <div className="container">
          <Header />
-         <Navigation />
 
          <h1 className="text-center">Edit Tasks</h1>
          <div className="row mb-4 justify-content-center">

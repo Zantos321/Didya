@@ -1,5 +1,4 @@
 import React from "react";
-import Navigation from "../ui/Navigation";
 import Header from "../ui/Header";
 import { Link } from "react-router-dom";
 
@@ -7,7 +6,6 @@ export default function AddTask() {
    return (
       <div className="container">
          <Header />
-         <Navigation />
 
          <h1 className="text-center">Add Task</h1>
          <div className="row mb-4 justify-content-center">

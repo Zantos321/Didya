@@ -7,12 +7,14 @@ import AllTasks from "./components/pages/AllTasks";
 import AddTask from "./components/pages/AddTask";
 import EditTask from "./components/pages/EditTask";
 import NotFound from "./components/pages/NotFound";
+import Signup from "./components/pages/Signup";
 
 function App() {
    return (
       <Router>
          <Switch>
             <Route exact path="/" component={Landing} />
+            <Route exact path="/signup" component={Signup} />
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/all-tasks" component={AllTasks} />
             <Route exact path="/add-task" component={AddTask} />
