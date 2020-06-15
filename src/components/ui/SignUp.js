@@ -1,6 +1,8 @@
 import React from "react";
-//import classnames from "classnames";
-import { Link } from "react-router-dom";
+import classnames from "classnames";
+//import { Link } from "react-router-dom";
+import hash from "object-hash";
+import { v4 as getUuid } from "uuid";
 
 export default class Signup extends React.Component {
    constructor(props) {
@@ -19,6 +21,92 @@ export default class Signup extends React.Component {
       });
    }
 
+   async setEmailState(emailInput) {
+      //Email Cannot be blank
+      //must have valid email regex
+      const lowerCasedEmailInput = emailInput.toLowerCase();
+      // eslint-disable-next-line
+      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (emailInput === "")
+         this.setState({
+            emailError: "Please enter your email address.",
+            hasEmailError: true,
+         });
+      else if (emailRegex.test(lowerCasedEmailInput) === false) {
+         this.setState({
+            emailError: "Not a valid email address.",
+            hasEmailError: true,
+         });
+      } else {
+         this.setState({ emailError: "", hasEmailError: false });
+      }
+   }
+
+   //pulls locat part of the email and checks to see if the password is contained in the local email
+   checkHasLocalPart(passwordInput, emailInput) {
+      const localPart = emailInput.split("@")[0];
+      if (localPart === "") return false;
+      else if (localPart.length < 4) return false;
+      else return passwordInput.includes(localPart);
+   }
+
+   async setPasswordState(passwordInput, emailInput) {
+      // can't be blank
+      // must be at least 9 charcters
+      // cannot contain the local-part of the email
+      // must have at least 3 unique characters
+
+      const uniqChars = [...new Set(passwordInput)];
+      console.log(passwordInput);
+      if (passwordInput === "") {
+         this.setState({
+            passwordError: "Please create a password.",
+            hasPasswordError: true,
+         });
+      } else if (passwordInput.length < 9) {
+         this.setState({
+            passwordError: "Your password must be at least 9 characters.",
+            hasPasswordError: true,
+         });
+      } else if (this.checkHasLocalPart(passwordInput, emailInput)) {
+         // return true if has local part in the password
+         // set error state
+         this.setState({
+            passwordError:
+               "For your safety, your password cannot contain your email address.",
+            hasPasswordError: true,
+         });
+      } else if (uniqChars.length < 3) {
+         this.setState({
+            passwordError:
+               "For your safety, your password must contain at least 3 unique characters.",
+            hasPasswordError: true,
+         });
+      } else {
+         this.setState({ passwordError: "", hasPasswordError: false });
+      }
+   }
+
+   async validateAndCreateUser() {
+      const emailInput = document.getElementById("signup-email-input").value;
+      const passwordInput = document.getElementById("signup-password-input")
+         .value;
+      await this.setEmailState(emailInput);
+      await this.setPasswordState(passwordInput, emailInput);
+      if (
+         this.state.hasEmailError === false &&
+         this.state.hasPasswordError === false
+      ) {
+         const user = {
+            id: getUuid(),
+            email: emailInput,
+            password: hash(passwordInput),
+            createdAt: Date.now(),
+         };
+         console.log(user);
+      }
+   }
+
    render() {
       return (
          <div className=" mt-5 col-12">
@@ -35,30 +123,54 @@ export default class Signup extends React.Component {
                         </label>
                         <input
                            type="email"
-                           className="form-control landing-input mb-3"
-                           id="signupEmail"
+                           className={classnames({
+                              "form-control": true,
+                              "landing-input": true,
+                              "mb-3": true,
+                              "is-invalid": this.state.hasEmailError,
+                           })}
+                           id="signup-email-input"
                            placeholder="EMAIL ADDRESS"
+                           aria-describedby="email-help"
                         />
-                        <div className="form-group" id="signup-form">
-                           <label
-                              className="input-text sr-only"
-                              htmlFor="password"
+                        {this.state.hasEmailError && (
+                           <div
+                              className="alert alert-danger d-none"
+                              role="alert"
+                              id="signup-email-alert"
                            >
-                              Password
-                           </label>
-                           <input
-                              type="password"
-                              className="form-control landing-input"
-                              id="signupPassword"
-                              placeholder="PASSWORD"
-                           />
-                        </div>
-                        <Link
+                              {this.state.emailError}
+                           </div>
+                        )}
+                        <input
+                           type="password"
+                           className={classnames({
+                              "form-control": true,
+                              "landing-input": true,
+                              "is-invalid": this.setState.hasPasswordError,
+                           })}
+                           id="signup-password-input"
+                           placeholder="PASSWORD"
+                           aria-describedby="password-help"
+                        />
+                        {this.state.hasPasswordError && (
+                           <div
+                              className="alert alert-danger d-none"
+                              role="alert"
+                              id="signup-password-alert"
+                           >
+                              {this.state.passwordError}
+                           </div>
+                        )}
+                        <button
                            to="/add-task"
                            className="btn landing-submit-button btn-md"
+                           onClick={() => {
+                              this.validateAndCreateUser();
+                           }}
                         >
                            SUBMIT
-                        </Link>
+                        </button>
                      </div>
                   </div>
                </div>
