@@ -1,48 +1,155 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
+import classnames from "classnames";
+import hash from "object-hash";
+import { v4 as getUuid } from "uuid";
 
-export default function LogIn() {
-   return (
-      <div className="mt-5 col-12">
-         <div className="card">
-            <div className="card-body">
-               <div className="landing-card">
-                  <h2 className="login-title text-bold">LOGIN</h2>
+export default class LogIn extends React.Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         inDisplayingInputs: false,
+         emailError: "",
+         passwordError: "",
+         hasEmailError: false,
+         hasPasswordError: false,
+      };
+   }
 
-                  <div className="form-group" id="login-form">
-                     <label className="input-text sr-only" htmlFor="email">
-                        Email Address
-                     </label>
-                     <input
-                        type="email"
-                        className="form-control landing-input mb-3"
-                        id="loginEmail"
-                        placeholder="EMAIL ADDRESS"
-                     />
+   showInputs() {
+      this.setState({
+         isDisplayingInputs: true,
+      });
+   }
+
+   async setEmailState(emailInput) {
+      const lowerCasedEmailInput = emailInput.toLowerCase();
+      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (emailInput === "")
+         this.setState({
+            emailError: "Please enter your email address.",
+            hasEmailError: true,
+         });
+      else if (emailRegex.test(lowerCasedEmailInput) === false) {
+         this.setState({
+            emailError: "Not a valid email address.",
+            hasEmailError: true,
+         });
+      } else {
+         this.setState({ emailError: "", hasEmailError: false });
+      }
+   }
+
+   async setPasswordState(passwordInput, emailInput) {
+      // can't be blank
+
+      console.log(passwordInput);
+      if (passwordInput === "") {
+         this.setState({
+            passwordError: "Please enter your password.",
+            hasPasswordError: true,
+         });
+      } else {
+         this.setState({ passwordError: "", hasPasswordError: false });
+      }
+   }
+
+   async validateAndCreateUser() {
+      const emailInput = document.getElementById("login-email-input").value;
+      const passwordInput = document.getElementById("login-password-input")
+         .value;
+      await this.setEmailState(emailInput);
+      await this.setPasswordState(passwordInput, emailInput);
+      if (
+         this.state.hasEmailError === false &&
+         this.state.hasPasswordError === false
+      ) {
+         const user = {
+            id: getUuid(),
+            email: emailInput,
+            password: hash(passwordInput),
+            createdAt: Date.now(),
+         };
+         console.log(user);
+      }
+   }
+
+   render() {
+      return (
+         <div className="mt-5 col-12">
+            <div className="card">
+               <div className="card-body">
+                  <div className="landing-card">
+                     <h2 className="login-title text-bold">LOGIN</h2>
+
                      <div className="form-group" id="login-form">
-                        <label
-                           className="input-text sr-only"
-                           htmlFor="password"
-                        >
-                           Password
+                        <label className="input-text sr-only" htmlFor="email">
+                           Email Address
                         </label>
                         <input
-                           type="password"
-                           className="form-control landing-input"
-                           id="loginPassword"
-                           placeholder="PASSWORD"
+                           type="email"
+                           className={classnames({
+                              "form-control": true,
+                              "landing-input": true,
+                              "mb-3": true,
+                              "is-invalid": this.state.hasEmailError,
+                           })}
+                           id="login-email-input"
+                           placeholder="EMAIL ADDRESS"
+                           aria-describedby="email-help"
                         />
+                        {this.state.hasEmailError && (
+                           <div
+                              className="alert alert-danger d-none"
+                              role="alert"
+                              id="login-email-alert"
+                           >
+                              {this.state.emailError}
+                           </div>
+                        )}
+
+                        <div className="form-group" id="login-form">
+                           <label
+                              className="input-text sr-only"
+                              htmlFor="password"
+                           >
+                              Password
+                           </label>
+                           <input
+                              type="password"
+                              className={classnames({
+                                 "form-control": true,
+                                 "landing-input": true,
+                                 "is-invalid": this.setState.hasPasswordError,
+                              })}
+                              id="login-password-input"
+                              placeholder="PASSWORD"
+                              aria-describedby="password-help"
+                           />
+                           {this.state.hasPasswordError && (
+                              <div
+                                 className="alert alert-danger d-none"
+                                 role="alert"
+                                 id="login-password-alert"
+                              >
+                                 {this.state.passwordError}
+                              </div>
+                           )}
+                        </div>
+                        <button
+                           to="/home"
+                           className="btn landing-submit-button btn-md"
+                           onClick={() => {
+                              this.validateAndCreateUser();
+                           }}
+                        >
+                           SUBMIT
+                        </button>
                      </div>
-                     <Link
-                        to="/home"
-                        className="btn landing-submit-button btn-md "
-                     >
-                        SUBMIT
-                     </Link>
                   </div>
                </div>
             </div>
          </div>
-      </div>
-   );
+      );
+   }
 }
