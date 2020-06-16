@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import Header from "../ui/Header";
 import TaskCard from "../ui/taskCard";
 import tasks from "../../mock-data/tasks";
-const demoTask = tasks[0];
-
-console.log(demoTask);
 
 export default function AllTasks() {
    return (

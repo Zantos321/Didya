@@ -1,10 +1,11 @@
 import React from "react";
 import classnames from "classnames";
-//import { Link } from "react-router-dom";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
+import { EMAIL_REGEX } from "../../utils/helpers";
+import { withRouter } from "react-router-dom";
 
-export default class Signup extends React.Component {
+class Signup extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
@@ -25,14 +26,13 @@ export default class Signup extends React.Component {
       //Email Cannot be blank
       //must have valid email regex
       const lowerCasedEmailInput = emailInput.toLowerCase();
-      // eslint-disable-next-line
-      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
       if (emailInput === "")
          this.setState({
             emailError: "Please enter your email address.",
             hasEmailError: true,
          });
-      else if (emailRegex.test(lowerCasedEmailInput) === false) {
+      else if (EMAIL_REGEX.test(lowerCasedEmailInput) === false) {
          this.setState({
             emailError: "Not a valid email address.",
             hasEmailError: true,
@@ -57,7 +57,6 @@ export default class Signup extends React.Component {
       // must have at least 3 unique characters
 
       const uniqChars = [...new Set(passwordInput)];
-      console.log(passwordInput);
       if (passwordInput === "") {
          this.setState({
             passwordError: "Please create a password.",
@@ -104,6 +103,7 @@ export default class Signup extends React.Component {
             createdAt: Date.now(),
          };
          console.log(user);
+         this.props.history.push("/add-task");
       }
    }
 
@@ -135,7 +135,7 @@ export default class Signup extends React.Component {
                         />
                         {this.state.hasEmailError && (
                            <div
-                              className="alert alert-danger d-none"
+                              className="alert alert-danger"
                               role="alert"
                               id="signup-email-alert"
                            >
@@ -155,7 +155,7 @@ export default class Signup extends React.Component {
                         />
                         {this.state.hasPasswordError && (
                            <div
-                              className="alert alert-danger d-none"
+                              className="alert alert-danger"
                               role="alert"
                               id="signup-password-alert"
                            >
@@ -164,7 +164,7 @@ export default class Signup extends React.Component {
                         )}
                         <button
                            to="/add-task"
-                           className="btn landing-submit-button btn-md"
+                           className="btn landing-submit-button btn-md mt-3"
                            onClick={() => {
                               this.validateAndCreateUser();
                            }}
@@ -179,3 +179,5 @@ export default class Signup extends React.Component {
       );
    }
 }
+
+export default withRouter(Signup);
