@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { EditIcon } from "../../icons/Icons";
 
 export default function TaskCard(props) {
    return (
-      <div className="row col-12 justify-content-center">
-         <div className="card border-dark col-9 mb-4">
-            <div className="card-body all-card-body-text">{props.task}</div>
-         </div>
-         <Link
-            to="/edit-task"
-            className="btn btn-primary float-right ml-2 mb-4"
-         >
-            Edit
+      <div className="row col">
+         <ul className="list-group col-11 list-line">
+            <li className="list-group-item all-list-text rounded-0">
+               {props.task}
+            </li>
+         </ul>
+         <Link to="/edit-task" className="float-right ml-2 mt-3 d-inline">
+            <EditIcon className="editTaskIcon" />
          </Link>
       </div>
    );

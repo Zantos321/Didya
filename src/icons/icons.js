@@ -14,7 +14,7 @@ function AddTask(fill) {
    );
 }
 
-function YesIcon({ className, fill }) {
+function YesIcon({ fill }) {
    return (
       <svg
          xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ function YesIcon({ className, fill }) {
    );
 }
 
-function NoIcon({ className, fill }) {
+function NoIcon({ fill }) {
    return (
       <svg
          xmlns="http://www.w3.org/2000/svg"
@@ -49,14 +49,14 @@ function NoIcon({ className, fill }) {
    );
 }
 
-function EditIcon({ className, fill }) {
+function EditIcon({ fill }) {
    return (
       <svg
          xmlns="http://www.w3.org/2000/svg"
          width="8"
          height="8"
          viewBox="0 0 8 8"
-         className="editIcon"
+         className="editTaskIcon"
       >
          <path fill={fill} d="M6 0l-1 1 2 2 1-1-2-2zm-2 2l-4 4v2h2l4-4-2-2z" />
       </svg>

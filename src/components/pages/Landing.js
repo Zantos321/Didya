@@ -1,7 +1,7 @@
 import React from "react";
 import landingLogo from "../../images/DIDYA-Logo-PURPLE-and-WHITE.svg";
 import LogIn from "../ui/LogIn";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 export default function Landing() {
    return (

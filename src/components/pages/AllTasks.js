@@ -1,19 +1,18 @@
 import React from "react";
 import BodyTemplate from "../ui/BodyTemplate";
 import { Link } from "react-router-dom";
-import TaskCard from "../ui/taskCard";
+import TaskCard from "../ui/TaskCard";
 import tasks from "../../mock-data/tasks";
-import { AddTask } from "../../icons/icons";
+import { AddTask } from "../../icons/Icons";
 
 export default function AllTasks() {
    return (
       <BodyTemplate>
          <div className="row col d-flex justify-content-between">
-            <h1 className="pl-2">All Tasks</h1>
+            <h3 className="pl-2 mt-3">ALL TASKS</h3>
 
-            <Link to="/add-task" className="mt-3 d-inline">
+            <Link to="/add-task" className="mt-3 d-inline float-right">
                <AddTask className="addTaskIcon" />
-               <p className="addLinkText ml-1 pt-2 d-inline">Add Task</p>
             </Link>
          </div>
          {tasks.map((task) => {
