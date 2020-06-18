@@ -9,7 +9,7 @@ export default function AllTasks() {
    return (
       <BodyTemplate>
          <div className="row col d-flex justify-content-between">
-            <h3 className="pl-2 mt-3">ALL TASKS</h3>
+            <h3 className="pl-2 mt-3 ml-2">ALL TASKS</h3>
 
             <Link to="/add-task" className="mt-3 d-inline float-right">
                <AddTask className="addTaskIcon" />

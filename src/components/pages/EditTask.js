@@ -22,7 +22,7 @@ export default class EditTasks extends React.Component {
    render() {
       return (
          <BodyTemplate>
-            <h3 className="pl-2 mt-3">EDIT TASK</h3>
+            <h3 className="pl-2 mt-3 ml-2">EDIT TASK</h3>
             <div className="row mb-4 ml-3">
                <h6 className="text-muted">
                   {" "}
