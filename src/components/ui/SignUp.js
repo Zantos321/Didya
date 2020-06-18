@@ -109,7 +109,7 @@ class Signup extends React.Component {
 
    render() {
       return (
-         <div className=" mt-5 col-12">
+         <div className=" mt-5">
             <div className="card">
                <div className="card-body">
                   <div className="landing-card">

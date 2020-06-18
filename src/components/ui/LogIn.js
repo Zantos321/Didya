@@ -74,11 +74,11 @@ class LogIn extends React.Component {
 
    render() {
       return (
-         <div className="mt-5 col-12">
+         <div className="mt-5">
             <div className="card">
                <div className="card-body">
                   <div className="landing-card">
-                     <h2 className="login-title text-bold">LOGIN</h2>
+                     <h2 className="login-title text-bold pl-2">LOGIN</h2>
 
                      <div className="form-group" id="login-form">
                         <label className="input-text sr-only" htmlFor="email">

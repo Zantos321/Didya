@@ -1,13 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Header from "../ui/Header";
+import BodyTemplate from "../ui/BodyTemplate";
 
 export default function HomePage() {
    return (
-      <div className="container">
-         <Header />
-
-         <h1 className="text-center">Home Page</h1>
+      <BodyTemplate>
+         <div className="row col">
+            <h1 className="pl-2">Home Page</h1>
+         </div>
          <div className="row col-12 justify-content-center mb-4">
             <div className="card col-8 border-dark ">
                <h5 className="card-header">Didya....</h5>
@@ -17,14 +16,7 @@ export default function HomePage() {
                   </p>
                </div>
             </div>
-            <button className="btn btn-success ml-2">Yes</button>
-            <button className="btn btn-danger ml-2">No</button>
          </div>
-         <div className="row justify-content-center">
-            <Link to="/all-tasks" className="btn btn-primary">
-               All Tasks
-            </Link>
-         </div>
-      </div>
+      </BodyTemplate>
    );
 }

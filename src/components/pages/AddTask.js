@@ -1,12 +1,11 @@
 import React from "react";
-import Header from "../ui/Header";
+import BodyTemplate from "../ui/BodyTemplate";
+
 import { Link } from "react-router-dom";
 
 export default function AddTask() {
    return (
-      <div className="container">
-         <Header />
-
+      <BodyTemplate>
          <h1 className="text-center">Add Task</h1>
          <div className="row mb-4 justify-content-center">
             <h2 className="text-danger">
@@ -29,6 +28,6 @@ export default function AddTask() {
                Save
             </Link>
          </div>
-      </div>
+      </BodyTemplate>
    );
 }

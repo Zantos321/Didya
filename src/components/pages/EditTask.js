@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../ui/Header";
+import BodyTemplate from "../ui/BodyTemplate";
 import { Link } from "react-router-dom";
 import tasks from "../../mock-data/tasks";
 import toDisplayDate from "date-fns/format";
@@ -21,9 +21,7 @@ export default class EditTasks extends React.Component {
 
    render() {
       return (
-         <div className="container">
-            <Header />
-
+         <BodyTemplate>
             <h1 className="text-center">Edit Tasks</h1>
             <div className="row mb-4 justify-content-center">
                <h2 className="text-danger">
@@ -82,7 +80,7 @@ export default class EditTasks extends React.Component {
                   </Link>
                )}
             </div>
-         </div>
+         </BodyTemplate>
       );
    }
 }

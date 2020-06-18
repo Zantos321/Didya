@@ -7,7 +7,7 @@ export default function Landing() {
       <div className="landing-background">
          <div className="container-fluid">
             <div className="row">
-               <div className="col mt-2 text-center">
+               <div className="col pt-2 pl-2 pr-2 pb-2">
                   <img
                      className="img-fluid"
                      src={landingLogo}
@@ -17,9 +17,8 @@ export default function Landing() {
                </div>
             </div>
          </div>
-         <div className="row justify-content-center">
-            <SignUp />
-         </div>
+
+         <SignUp />
       </div>
    );
 }

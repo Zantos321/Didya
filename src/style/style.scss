@@ -4,6 +4,10 @@
    min-height: 100vh;
 }
 
+#landing-image {
+   max-width: 80%;
+}
+
 .landing-input {
    border-top: 0;
    border-right: 0;
@@ -46,6 +50,16 @@ input::placeholder {
    font-weight: bold;
 }
 
+.nav-link {
+   font-family: $font-family-brand;
+   font-weight: bold;
+   color: $My-Color-Theme-2;
+}
+
+#add-task {
+   color: $My-Color-Theme-2;
+   min-width: 3rem;
+}
 textarea {
    width: 100%;
    background-color: transparent;
