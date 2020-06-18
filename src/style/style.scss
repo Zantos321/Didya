@@ -29,6 +29,21 @@ input::placeholder {
    background-color: transparent;
 }
 
+.addTaskIcon {
+   width: 20px;
+   height: auto;
+   margin-top: -2px;
+   path {
+      fill: $My-Color-Theme-2;
+   }
+}
+
+.addLinkText {
+   font-family: $font-family-brand;
+   font-weight: bold;
+   color: $My-Color-Theme-2;
+}
+
 .card {
    border-radius: 0;
 }
