@@ -127,12 +127,20 @@ h3 {
    }
 }
 
+.yesButton {
+   border: 0;
+}
+
 .noIcon {
    width: 40px;
    height: auto;
    path {
       fill: $My-Color-Theme-2;
    }
+}
+
+.noButton {
+   border: 0;
 }
 
 .addLinkText {
