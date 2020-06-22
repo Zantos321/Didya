@@ -50,7 +50,7 @@ export default function HomePage() {
             <button className="yesButton" onClick={() => updateTask(true)}>
                <YesIcon className="yesIcon" />
             </button>
-            <button className="noButton" onClick={() => updateTask(true)}>
+            <button className="noButton" onClick={() => updateTask()}>
                <NoIcon className="noIcon" />
             </button>
          </div>

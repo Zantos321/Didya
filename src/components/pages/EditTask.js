@@ -3,14 +3,31 @@ import BodyTemplate from "../ui/BodyTemplate";
 import { Link } from "react-router-dom";
 import tasks from "../../mock-data/tasks";
 import toDisplayDate from "date-fns/format";
+import classnames from "classnames";
+import { MAX_CHAR_COUNT } from "../../utils/helpers";
+
 const demoTask = tasks[1];
 
 export default class EditTasks extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
+         task: demoTask.userTask,
          checked: false,
       };
+   }
+
+   checkIsInvalidCharLimit() {
+      if (
+         this.state.task.length > MAX_CHAR_COUNT ||
+         this.state.task.length === 0
+      ) {
+         return true;
+      } else return false;
+   }
+
+   setTaskText(e) {
+      this.setState({ task: e.target.value });
    }
 
    showDeleteButton() {
@@ -36,11 +53,23 @@ export default class EditTasks extends React.Component {
                   autoFocus={true}
                   defaultValue={demoTask.userTask}
                   className="editTaskTextArea"
+                  onChange={(e) => this.setTaskText(e)}
                ></textarea>
-               <div className="row">
-                  <p className="text-muted mr-1 ml-4">Last Time Completed:</p>
+               <div className="row justify-content-between">
+                  <p className="text-muted mr-1 ml-3">
+                     Last Time Completed:{" "}
+                     {toDisplayDate(demoTask.lastDone, " MMM. d, y")}
+                  </p>
 
-                  <p>{toDisplayDate(demoTask.lastDone, " MMM. d, y")}</p>
+                  <p className="text-muted mr-3">
+                     <span
+                        className={classnames({
+                           "text-danger": this.checkIsInvalidCharLimit(),
+                        })}
+                     >
+                        {this.state.task.length}/{MAX_CHAR_COUNT}
+                     </span>
+                  </p>
                </div>
             </div>
             <div className="col">
@@ -48,7 +77,12 @@ export default class EditTasks extends React.Component {
                   <Link to="/all-tasks" className="btn edit-cancel col-4 ml-4">
                      CANCEL EDIT
                   </Link>
-                  <Link to="/all-tasks" className="btn edit-save col-4 mr-4">
+                  <Link
+                     to="/all-tasks"
+                     className={classnames("btn edit-save col-4 mr-4", {
+                        disabled: this.checkIsInvalidCharLimit(),
+                     })}
+                  >
                      SAVE EDIT
                   </Link>
                </div>

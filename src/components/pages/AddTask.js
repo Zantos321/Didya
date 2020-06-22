@@ -2,21 +2,27 @@ import React from "react";
 import BodyTemplate from "../ui/BodyTemplate";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
-
-const MAX_CHAR_COUNT = 50;
+import { MAX_CHAR_COUNT } from "../../utils/helpers";
 
 export default class AddTask extends React.Component {
-   checkIsOverCharLimit() {
+   constructor(props) {
+      super(props);
+      this.state = {
+         task: "",
+      };
+   }
+
+   checkIsInvalidCharLimit() {
       if (
-         this.state.userTask.length > MAX_CHAR_COUNT ||
-         this.state.userTask.length === 0
+         this.state.task.length > MAX_CHAR_COUNT ||
+         this.state.task.length === 0
       ) {
          return true;
       } else return false;
    }
 
    setTaskText(e) {
-      this.setState({ userTask: e.target.value });
+      this.setState({ task: e.target.value });
    }
 
    render() {
@@ -33,18 +39,35 @@ export default class AddTask extends React.Component {
                <textarea
                   rows="4"
                   autoFocus={true}
-                  defaultValue="This is a task that takes no longer than 15 minutes."
+                  defaultValue=""
                   className="editTaskTextArea"
                   onChange={(e) => this.setTaskText(e)}
                ></textarea>
             </div>
+            <div className="row float-right">
+               <p className="text-muted mr-5">
+                  <span
+                     className={classnames({
+                        "text-danger": this.checkIsInvalidCharLimit(),
+                     })}
+                  >
+                     {this.state.task.length}/{MAX_CHAR_COUNT}
+                  </span>
+               </p>
+            </div>
+            <div className="clearfix"></div>
             <div className="col">
                <div className="row justify-content-between mb-4">
                   <Link to="/all-tasks" className="btn edit-cancel col-4 ml-4">
                      CANCEL
                   </Link>
 
-                  <Link to="/all-tasks" className="btn edit-save col-4 mr-4">
+                  <Link
+                     to="/all-tasks"
+                     className={classnames("btn edit-save col-4 mr-4", {
+                        disabled: this.checkIsInvalidCharLimit(),
+                     })}
+                  >
                      SAVE
                   </Link>
                </div>
