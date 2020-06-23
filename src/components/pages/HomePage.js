@@ -9,7 +9,6 @@ import _ from "lodash";
 import { render } from "node-sass";
 import { bindActionCreators } from "redux";
 
-const mocky = "https://run.mocky.io/v3/e50b161e-7560-4806-b703-39c90750ecbb";
 // shuffles task list and pulls a task
 function selectTask() {
    const filteredTasks = tasks.filter((task) => !task.taskCompleted);
@@ -20,7 +19,7 @@ class HomePage extends React.Component {
    constructor(props) {
       super(props);
       axios
-         .get("https://run.mocky.io/v3/e50b161e-7560-4806-b703-39c90750ecbb")
+         .get("https://raw.githubusercontent.com/Zantos321/didya/master/src/mock-data/tasks.json")
          .then(function (res) {
             // handle success
             console.log(res);
@@ -85,6 +84,9 @@ class HomePage extends React.Component {
          </BodyTemplate>
       );
    }
+}
+
+function mapStateToProps() {
 }
 
 export default HomePage;
