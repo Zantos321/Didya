@@ -1,41 +1,40 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import actions from "../../store/actions";
 import BodyTemplate from "../ui/BodyTemplate";
 import diyaDots from "../../images/DIDYA-Logo-PURPLE-dotdotdot.svg";
 import { YesIcon } from "../../icons/Icons";
 import { NoIcon } from "../../icons/Icons";
-import tasks from "../../mock-data/tasks";
-import _ from "lodash";
-import { render } from "node-sass";
-import { bindActionCreators } from "redux";
+// import shuffle from "lodash";
+// import { render } from "node-sass";
 
-// shuffles task list and pulls a task
-function selectTask() {
-   const filteredTasks = tasks.filter((task) => !task.taskCompleted);
-   return _.shuffle(filteredTasks)[0];
-}
+// // shuffles task list and pulls a task
+// function selectTask() {
+//    const filteredTasks = tasks.filter((task) => !task.taskCompleted);
+//    return _.shuffle(filteredTasks)[0];
+// }
 
 class HomePage extends React.Component {
    constructor(props) {
       super(props);
       axios
-         .get("https://raw.githubusercontent.com/Zantos321/didya/master/src/mock-data/tasks.json")
+         .get(
+            "https://raw.githubusercontent.com/Zantos321/didya/master/src/mock-data/tasks.json"
+         )
          .then(function (res) {
             // handle success
             console.log(res);
             props.dispatch({
-               type: 
-            })
+               type: actions.STORE_QUEUED_TASKS,
+               payload: res.data,
+            });
          })
          .catch(function (error) {
             // handle error
             console.log(error);
-         })
-         .finally(function () {
-            // always executed
          });
    }
-
 
    // pulls the initial tasks and sets its state
    // const [currentTask, setCurrentTask] = React.useState(selectTask());
@@ -58,7 +57,14 @@ class HomePage extends React.Component {
    //    setCurrentTask(selectTask());
    // }
 
+   goToNextTask() {
+      // TODO make it randomly display a task
+      // TODO if the index of current task = length of the tasks array, then restart the array
+      this.props.dispatch({ type: actions.UPDATE_INDEX_OF_CURRENT_TASK });
+   }
+
    render() {
+      const currentTask = this.props.queuedTasks[this.props.indexOfCurrentTask];
       return (
          <BodyTemplate>
             <div className="row col">
@@ -68,16 +74,19 @@ class HomePage extends React.Component {
                <div className="card didyaCard col-8 mb-4">
                   <div className="card-body">
                      <p className="card-text didyaText">
-                        {currentTask.userTask}
+                        {currentTask && currentTask.userTask}
                      </p>
                   </div>
                </div>
             </div>
             <div className="row d-flex justify-content-around">
-               <button className="yesButton" onClick={() => updateTask(true)}>
+               <button
+                  className="yesButton"
+                  onClick={() => this.goToNextTask()}
+               >
                   <YesIcon className="yesIcon" />
                </button>
-               <button className="noButton" onClick={() => updateTask()}>
+               <button className="noButton" onClick={() => this.goToNextTask()}>
                   <NoIcon className="noIcon" />
                </button>
             </div>
@@ -86,7 +95,11 @@ class HomePage extends React.Component {
    }
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
+   return {
+      queuedTasks: state.queuedTasks,
+      indexOfCurrentTask: state.indexOfCurrentTask,
+   };
 }
 
-export default HomePage;
+export default connect(mapStateToProps)(HomePage);
