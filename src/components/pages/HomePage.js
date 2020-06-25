@@ -18,22 +18,24 @@ import { NoIcon } from "../../icons/Icons";
 class HomePage extends React.Component {
    constructor(props) {
       super(props);
-      axios
-         .get(
-            "https://raw.githubusercontent.com/Zantos321/didya/master/src/mock-data/tasks.json"
-         )
-         .then(function (res) {
-            // handle success
-            console.log(res);
-            props.dispatch({
-               type: actions.STORE_QUEUED_TASKS,
-               payload: res.data,
+      if (props.queuedTasks.tasks.length === 0) {
+         axios
+            .get(
+               "https://raw.githubusercontent.com/Zantos321/didya/master/src/mock-data/tasks.json"
+            )
+            .then(function (res) {
+               // handle success
+               console.log(res);
+               props.dispatch({
+                  type: actions.STORE_QUEUED_TASKS,
+                  payload: res.data,
+               });
+            })
+            .catch(function (error) {
+               // handle error
+               console.log(error);
             });
-         })
-         .catch(function (error) {
-            // handle error
-            console.log(error);
-         });
+      }
    }
 
    // pulls the initial tasks and sets its state
@@ -59,12 +61,20 @@ class HomePage extends React.Component {
 
    goToNextTask() {
       // TODO make it randomly display a task
-      // TODO if the index of current task = length of the tasks array, then restart the array
-      this.props.dispatch({ type: actions.UPDATE_INDEX_OF_CURRENT_TASK });
+      if (
+         this.props.queuedTasks.index ===
+         this.props.queuedTasks.tasks.length - 1
+      ) {
+         this.props.dispatch({ type: actions.RESET_TASK_QUEUE });
+      } else {
+         this.props.dispatch({ type: actions.UPDATE_INDEX_OF_CURRENT_TASK });
+      }
    }
 
    render() {
-      const currentTask = this.props.queuedTasks[this.props.indexOfCurrentTask];
+      const currentTask = this.props.queuedTasks.tasks[
+         this.props.queuedTasks.index
+      ];
       return (
          <BodyTemplate>
             <div className="row col">
@@ -98,7 +108,6 @@ class HomePage extends React.Component {
 function mapStateToProps(state) {
    return {
       queuedTasks: state.queuedTasks,
-      indexOfCurrentTask: state.indexOfCurrentTask,
    };
 }
 

@@ -4,8 +4,10 @@ import combineReducers from "./combineReducers";
 
 const initialState = {
    currentUser: {},
-   quededTasks: [],
-   indexOfCurrentTask: 0,
+   queuedTasks: {
+      tasks: [],
+      index: 0,
+   },
 };
 
 const store = createStore(combineReducers, initialState, composeWithDevTools());
