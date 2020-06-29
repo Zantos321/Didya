@@ -4,6 +4,7 @@ import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
 import { EMAIL_REGEX } from "../../utils/helpers";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class LogIn extends React.Component {
    constructor(props) {
@@ -152,4 +153,8 @@ class LogIn extends React.Component {
    }
 }
 
-export default withRouter(LogIn);
+function mapStateToProps(state) {
+   return {};
+}
+
+export default withRouter(connect(mapStateToProps)(LogIn));
