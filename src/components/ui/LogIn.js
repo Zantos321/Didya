@@ -5,6 +5,8 @@ import { v4 as getUuid } from "uuid";
 import { EMAIL_REGEX } from "../../utils/helpers";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import actions from "../../store/actions";
+import axios from "axios";
 
 class LogIn extends React.Component {
    constructor(props) {
@@ -68,7 +70,24 @@ class LogIn extends React.Component {
             password: hash(passwordInput),
             createdAt: Date.now(),
          };
-         console.log(user);
+         console.log("User object for POST", user);
+         axios
+            .get(
+               "https://raw.githubusercontent.com/Zantos321/didya/master/src/mock-data/user.json"
+            )
+            .then((res) => {
+               // handle success
+               const currentUser = res.data;
+               console.log(currentUser);
+               this.props.dispatch({
+                  type: actions.UPDATE_CURRENT_USER,
+                  payload: res.data,
+               });
+            })
+            .catch((error) => {
+               // handle error
+               console.log(error);
+            });
          this.props.history.push("/home");
       }
    }
