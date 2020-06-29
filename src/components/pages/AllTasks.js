@@ -1,13 +1,37 @@
 import React from "react";
 import BodyTemplate from "../ui/BodyTemplate";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import TaskCard from "../ui/TaskCard";
 import { AddTask } from "../../icons/Icons";
+import axios from "axios";
 
-class AllTasks extends React.Component {
+export default class AllTasks extends React.Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         tasks: [],
+      };
+   }
+
+   componentDidMount() {
+      axios
+         .get(
+            "https://raw.githubusercontent.com/Zantos321/didya/master/src/mock-data/tasks.json"
+         )
+         .then((res) => {
+            // handle success
+            const allTasks = res.data;
+            console.log(res);
+            this.setState({
+               tasks: allTasks,
+            });
+         })
+         .catch((error) => {
+            // handle error
+            console.log(error);
+         });
+   }
    render() {
-      const tasks = this.props.queuedTasks[this.props.indexOfCurrentTask];
       return (
          <BodyTemplate>
             <div className="row col d-flex justify-content-between">
@@ -17,19 +41,10 @@ class AllTasks extends React.Component {
                   <AddTask className="addTaskIcon" />
                </Link>
             </div>
-            {/* {tasks.map((task) => {
-               return <TaskCard task={task.userTask} key={task.id} />;
-            })} */}
+            {this.state.tasks.map((task) => {
+               return <TaskCard task={task} key={task.id} />;
+            })}
          </BodyTemplate>
       );
    }
 }
-
-function mapStateToProps(state) {
-   return {
-      queuedTasks: state.queuedTasks,
-      indexOfCurrentTask: state.indexOfCurrentTask,
-   };
-}
-
-export default connect(mapStateToProps)(AllTasks);

@@ -6,16 +6,12 @@ import BodyTemplate from "../ui/BodyTemplate";
 import diyaDots from "../../images/DIDYA-Logo-PURPLE-dotdotdot.svg";
 import { YesIcon } from "../../icons/Icons";
 import { NoIcon } from "../../icons/Icons";
-// import shuffle from "lodash";
-// import { render } from "node-sass";
-
-// // shuffles task list and pulls a task
-// function selectTask() {
-//    const filteredTasks = tasks.filter((task) => !task.taskCompleted);
-//    return _.shuffle(filteredTasks)[0];
-// }
+import shuffle from "lodash/shuffle";
+import without from "lodash/without";
 
 class HomePage extends React.Component {
+   originalTaskList;
+
    constructor(props) {
       super(props);
       if (props.queuedTasks.tasks.length === 0) {
@@ -23,15 +19,18 @@ class HomePage extends React.Component {
             .get(
                "https://raw.githubusercontent.com/Zantos321/didya/master/src/mock-data/tasks.json"
             )
-            .then(function (res) {
+            .then((res) => {
                // handle success
                console.log(res);
+               this.originalTaskList = res.data;
+               const shuffledTasks = shuffle(res.data);
+               console.log({ shuffledTasks });
                props.dispatch({
                   type: actions.STORE_QUEUED_TASKS,
-                  payload: res.data,
+                  payload: shuffledTasks,
                });
             })
-            .catch(function (error) {
+            .catch((error) => {
                // handle error
                console.log(error);
             });
@@ -59,22 +58,31 @@ class HomePage extends React.Component {
    //    setCurrentTask(selectTask());
    // }
 
+   // // shuffles task list and pulls a task
+   // function selectTask() {
+   //    const filteredTasks = tasks.filter((task) => !task.taskCompleted);
+   //    return _.shuffle(filteredTasks)[0];
+   // }
+
    goToNextTask() {
       // TODO make it randomly display a task
-      if (
-         this.props.queuedTasks.index ===
-         this.props.queuedTasks.tasks.length - 1
-      ) {
-         this.props.dispatch({ type: actions.RESET_TASK_QUEUE });
-      } else {
-         this.props.dispatch({ type: actions.UPDATE_INDEX_OF_CURRENT_TASK });
+      const removedTask = this.props.queuedTasks.tasks[0];
+      const tasks = this.props.queuedTasks.tasks;
+      const filteredTasks = without(tasks, removedTask);
+      this.props.dispatch({
+         type: actions.STORE_QUEUED_TASKS,
+         payload: filteredTasks,
+      });
+      if (filteredTasks[0] === undefined) {
+         this.props.dispatch({
+            type: actions.RESET_TASK_QUEUE,
+            payload: shuffle(this.originalTaskList),
+         });
       }
    }
 
    render() {
-      const currentTask = this.props.queuedTasks.tasks[
-         this.props.queuedTasks.index
-      ];
+      const currentTask = this.props.queuedTasks.tasks[0];
       return (
          <BodyTemplate>
             <div className="row col">
