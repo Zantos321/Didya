@@ -9,7 +9,7 @@ export default function tasks(taskQueue = {}, action) {
          newTaskQueue = action.payload;
          return newTaskQueue;
       case actions.RESET_TASK_QUEUE:
-         // newTaskQueue.tasks = [];
+         // newTaskQueue = [];
          newTaskQueue = action.payload;
          console.log(action.payload);
          return newTaskQueue;
