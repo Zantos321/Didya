@@ -4,9 +4,7 @@ import combineReducers from "./combineReducers";
 
 const initialState = {
    currentUser: {},
-   queuedTasks: {
-      tasks: [],
-   },
+   tasks: [],
    editableTask: {},
 };
 

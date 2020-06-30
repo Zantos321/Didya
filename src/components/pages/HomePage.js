@@ -14,7 +14,7 @@ class HomePage extends React.Component {
 
    constructor(props) {
       super(props);
-      if (props.queuedTasks.tasks.length === 0) {
+      if (props.tasks.length === 0) {
          axios
             .get(
                "https://raw.githubusercontent.com/Zantos321/didya/master/src/mock-data/tasks.json"
@@ -66,8 +66,8 @@ class HomePage extends React.Component {
 
    goToNextTask() {
       // TODO make it randomly display a task
-      const removedTask = this.props.queuedTasks.tasks[0];
-      const tasks = this.props.queuedTasks.tasks;
+      const removedTask = this.props.tasks[0];
+      const tasks = this.props.tasks;
       const filteredTasks = without(tasks, removedTask);
       this.props.dispatch({
          type: actions.STORE_QUEUED_TASKS,
@@ -82,7 +82,7 @@ class HomePage extends React.Component {
    }
 
    render() {
-      const currentTask = this.props.queuedTasks.tasks[0];
+      const currentTask = this.props.tasks[0];
       return (
          <BodyTemplate>
             <div className="row col">
@@ -115,7 +115,7 @@ class HomePage extends React.Component {
 
 function mapStateToProps(state) {
    return {
-      queuedTasks: state.queuedTasks,
+      tasks: state.tasks,
    };
 }
 
