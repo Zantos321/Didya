@@ -57,7 +57,7 @@ class EditTasks extends React.Component {
                      <textarea
                         rows="4"
                         autoFocus={true}
-                        defaultValue={this.props.editableTask.task.userTask}
+                        defaultValue={this.props.editableTask.task.userText}
                         className="editTaskTextArea"
                         onChange={(e) => this.setTaskText(e)}
                      ></textarea>
@@ -76,7 +76,7 @@ class EditTasks extends React.Component {
                                  "text-danger": this.checkIsInvalidCharLimit(),
                               })}
                            >
-                              {this.state.task.userTask.length}/{MAX_CHAR_COUNT}
+                              {this.state.task.userText.length}/{MAX_CHAR_COUNT}
                            </span>
                         </p>
                      </div>
