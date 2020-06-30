@@ -12,7 +12,7 @@ class EditTasks extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         task: this.props.editableTask,
+         task: this.props.editableTask.task.userText,
          checked: false,
       };
    }
@@ -76,7 +76,7 @@ class EditTasks extends React.Component {
                                  "text-danger": this.checkIsInvalidCharLimit(),
                               })}
                            >
-                              {this.state.task.userText.length}/{MAX_CHAR_COUNT}
+                              {this.state.task.length}/{MAX_CHAR_COUNT}
                            </span>
                         </p>
                      </div>
