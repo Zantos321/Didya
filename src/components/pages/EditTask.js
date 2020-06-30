@@ -1,7 +1,6 @@
 import React from "react";
 import BodyTemplate from "../ui/BodyTemplate";
 import { Link } from "react-router-dom";
-import tasks from "../../mock-data/tasks";
 import toDisplayDate from "date-fns/format";
 import classnames from "classnames";
 import { MAX_CHAR_COUNT } from "../../utils/helpers";
@@ -9,13 +8,11 @@ import { connect } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 //import actions from "../../store/actions";
 
-const demoTask = tasks[1];
-
 class EditTasks extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         task: demoTask,
+         task: this.props.editableTask,
          checked: false,
       };
    }
@@ -73,16 +70,15 @@ class EditTasks extends React.Component {
                            )}
                         </p>
 
-                        {/* <p className="text-muted mr-3">
+                        <p className="text-muted mr-3">
                            <span
                               className={classnames({
                                  "text-danger": this.checkIsInvalidCharLimit(),
                               })}
                            >
-                              {this.state.editableTask.task.userTask.length}/
-                              {MAX_CHAR_COUNT}
+                              {this.state.task.userTask.length}/{MAX_CHAR_COUNT}
                            </span>
-                        </p> */}
+                        </p>
                      </div>
                   </div>
                   <div className="col">
@@ -146,7 +142,6 @@ class EditTasks extends React.Component {
 function mapStateToProps(state) {
    return {
       editableTask: state.editableTask,
-      queuedTasks: state.queuedTasks,
    };
 }
 
